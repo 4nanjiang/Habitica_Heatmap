@@ -121,9 +121,7 @@ export default function Home() {
                     container: {
                       borderRadius: '8px',
                     },
-                  },
-                  fontSize: 14,
-                  textColor: '#333333'
+                  }
                 }}
                 tooltip={({ day, value }) => (
                   <div className="bg-white p-2 shadow-lg rounded-lg border border-gray-200">
