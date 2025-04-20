@@ -1,0 +1,35 @@
+name: Fetch Habitica Data
+
+on:
+  schedule:
+    - cron: '0 16 * * *'  # 每天 UTC 16:00 运行
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  fetch-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create .env.local file
+        run: |
+          echo "HABITICA_USER_ID=${{ secrets.HABITICA_USER_ID }}" > .env.local
+          echo "HABITICA_API_TOKEN=${{ secrets.HABITICA_API_TOKEN }}" >> .env.local
+
+      - name: Fetch Habitica data
+        run: node scripts/fetch-data.js
+
+      - name: Commit and push if changes exist
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add public/data
+          git diff --staged --quiet || (git commit -m "Update Habitica data" && git push)
