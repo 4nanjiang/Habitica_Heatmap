@@ -104,30 +104,25 @@ export default function TaskAnalytics({ data, title }: TaskAnalyticsProps) {
 
   return (
     <div className="mt-2">
-      <div className="grid grid-cols-3 gap-2 bg-white/50 rounded-lg p-2.5">
+      <div className="grid grid-cols-4 gap-2 bg-white/50 rounded-lg p-2.5">
         <div className="text-center">
-          <p className="text-xs text-gray-500 mb-1">完成率</p>
+          <p className="text-xs text-gray-500 mb-1">Completion Rate</p>
           <p className="text-base font-bold text-primary">
             {analytics.completionRate.toFixed(1)}%
           </p>
         </div>
         <div className="text-center border-x border-gray-100">
-          <p className="text-xs text-gray-500 mb-1">当前连续</p>
-          <p className="text-base font-bold text-gray-800">{analytics.currentStreak} 天</p>
+          <p className="text-xs text-gray-500 mb-1">Current Streak</p>
+          <p className="text-base font-bold text-gray-800">{analytics.currentStreak} days</p>
+        </div>
+        <div className="text-center border-r border-gray-100">
+          <p className="text-xs text-gray-500 mb-1">Longest Streak</p>
+          <p className="text-base font-bold text-primary">{analytics.longestStreak} days</p>
         </div>
         <div className="text-center">
-          <p className="text-xs text-gray-500 mb-1">最长连续</p>
-          <p className="text-base font-bold text-primary">{analytics.longestStreak} 天</p>
+          <p className="text-xs text-gray-500 mb-1">Total Completed</p>
+          <p className="text-base font-bold text-gray-800">{analytics.completedDays} days</p>
         </div>
-      </div>
-      
-      <div className="mt-2 bg-white/50 px-3 py-2 rounded-lg">
-        <p className="text-xs text-gray-500 leading-relaxed">
-          过去 <span className="font-medium text-gray-700">{analytics.totalDays}</span> 天完成 <span className="font-medium text-gray-700">{analytics.completedDays}</span> 天
-          {analytics.currentStreak > 0 && (
-            <>，当前连续 <span className="font-medium text-gray-700">{analytics.currentStreak}</span> 天</>
-          )}
-        </p>
       </div>
     </div>
   );

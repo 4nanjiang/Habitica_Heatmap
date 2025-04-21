@@ -2,7 +2,7 @@ import './globals.css';
 
 export const metadata = {
   title: 'Habitica Dailies Heatmap',
-  description: '可视化展示你的Habitica每日任务完成情况',
+  description: 'Visualize your Habitica daily task completion status',
 }
 
 export default function RootLayout({
@@ -11,7 +11,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="zh">
+    <html lang="en">
       <body className="min-h-screen bg-gray-50 text-gray-900">{children}</body>
     </html>
   )

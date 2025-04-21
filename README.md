@@ -30,10 +30,19 @@
 为了让 GitHub Actions 能够自动获取数据并推送到仓库，您需要在 GitHub 仓库中配置以下 Secrets：
 
 1.  导航到您的 GitHub 仓库 -> Settings -> Secrets and variables -> Actions。
-2.  点击 "New repository secret" 添加以下三个 Secrets：
+2.  **生成 Personal Access Token (PAT)**:
+    *   在 GitHub 页面右上角，点击您的头像，然后选择 "Settings"。
+    *   在左侧边栏，向下滚动并点击 "Developer settings"。
+    *   在左侧边栏，点击 "Personal access tokens"，然后选择 "Tokens (classic)"。
+    *   点击 "Generate new token"，然后选择 "Generate new token (classic)"。
+    *   给您的 Token 起一个描述性的名字（例如 `habitica-heatmap-action`）。
+    *   在 "Select scopes" 部分，勾选 `repo` 权限。这将允许 Action 推送代码到您的仓库。
+    *   点击页面底部的 "Generate token"。
+    *   **重要**: 生成后立即复制您的新 PAT。您将无法再次看到它。请将其保存在安全的地方，直到您将其添加到 GitHub Secrets。
+3.  点击 "New repository secret" 添加以下三个 Secrets：
     *   `HABITICA_USER_ID`: 您的 Habitica 用户 ID。
     *   `HABITICA_API_TOKEN`: 您的 Habitica API 令牌。
-    *   `PAT` (Personal Access Token): 创建一个 GitHub Personal Access Token，需要授予 `repo` 范围的权限。这个 Token 用于允许 GitHub Actions 将更新后的数据文件推送回您的仓库。
+    *   `PAT`: 将您刚刚生成的 GitHub Personal Access Token 粘贴到这里。
 
 ## ▶️ 静态部署
 

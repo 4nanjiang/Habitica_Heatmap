@@ -32,7 +32,7 @@ export default function Home() {
         const response = await fetch('/data/dailies.json');
         
         if (!response.ok) {
-          throw new Error(`加载数据失败: ${response.status} ${response.statusText}`);
+          throw new Error(`Failed to load data: ${response.status} ${response.statusText}`);
         }
         
         const tasksWithHistory = await response.json();
@@ -50,8 +50,8 @@ export default function Home() {
         setTasks(localizedTasks);
         setLoading(false);
       } catch (err) {
-        console.error('获取数据时出错:', err);
-        setError(err instanceof Error ? err.message : '获取任务数据失败');
+        console.error('Error fetching data:', err);
+        setError(err instanceof Error ? err.message : 'Failed to fetch task data');
         setLoading(false);
       }
     };
@@ -78,12 +78,14 @@ export default function Home() {
   return (
     <main className="min-h-screen p-8">
       <h1 className="text-3xl font-bold text-primary mb-8">Habitica Dailies Heatmap</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6">
         {tasks.map((task) => (
-          <div key={task.id} className="card">
-            <h2 className="task-title">{task.title}</h2>
-            {task.notes && <p className="stats-text mb-4">{task.notes}</p>}
-            <div className="h-[200px] mb-4">
+          <div key={task.id} className="card flex flex-col items-center px-8 py-6">
+            <div className="w-full">
+              <h2 className="task-title">{task.title}</h2>
+              {task.notes && <p className="stats-text mb-4">{task.notes}</p>}
+            </div>
+            <div className="w-full h-[200px] mb-4">
               <style jsx global>{`
                 .nivo-calendar-day {
                   rx: 4px;
@@ -125,12 +127,14 @@ export default function Home() {
                 }}
                 tooltip={({ day, value }) => (
                   <div className="bg-white p-2 shadow-lg rounded-lg border border-gray-200">
-                    <strong>{day}</strong>: {value ? '已完成' : '未完成'}
+                    <strong>{day}</strong>: {value ? 'Completed' : 'Not Completed'}
                   </div>
                 )}
               />
             </div>
-            <TaskAnalytics data={task.data} title={task.title} />
+            <div className="flex justify-center">
+              <TaskAnalytics data={task.data} title={task.title} />
+            </div>
           </div>
         ))}
       </div>

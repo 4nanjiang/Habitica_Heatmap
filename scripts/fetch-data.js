@@ -1,5 +1,13 @@
 // 构建时获取Habitica数据并生成静态JSON文件
 require('dotenv').config({ path: '.env.local' });
+
+const HABITICA_USER_ID = process.env.HABITICA_USER_ID;
+const HABITICA_API_TOKEN = process.env.HABITICA_API_TOKEN;
+
+if (!HABITICA_USER_ID || !HABITICA_API_TOKEN) {
+  console.error('Error: HABITICA_USER_ID and HABITICA_API_TOKEN must be set in .env.local');
+  process.exit(1);
+}
 const fs = require('fs');
 const path = require('path');
 
@@ -16,7 +24,6 @@ class HabiticaClient {
       baseUrl: 'https://habitica.com/api/v3',
       retryDelay: 10000,
       maxRetries: 5,
-      cacheExpiration: 24 * 60 * 60 * 1000,
       ...config
     };
     this.lastRequestTime = 0;
@@ -149,14 +156,14 @@ async function fetchAndSaveData() {
     console.log('Starting data fetch process...');
     
     // 检查环境变量
-    if (!process.env.NEXT_PUBLIC_HABITICA_USER_ID || !process.env.NEXT_PUBLIC_HABITICA_API_TOKEN) {
-      throw new Error('环境变量未设置: NEXT_PUBLIC_HABITICA_USER_ID 或 NEXT_PUBLIC_HABITICA_API_TOKEN');
+    if (!process.env.HABITICA_USER_ID || !process.env.HABITICA_API_TOKEN) {
+      throw new Error('环境变量未设置: HABITICA_USER_ID 或 HABITICA_API_TOKEN');
     }
 
     // 创建Habitica客户端
     const client = new HabiticaClient({
-      userId: process.env.NEXT_PUBLIC_HABITICA_USER_ID,
-      apiToken: process.env.NEXT_PUBLIC_HABITICA_API_TOKEN
+      userId: process.env.HABITICA_USER_ID,
+      apiToken: process.env.HABITICA_API_TOKEN
     });
 
     // 获取任务数据
