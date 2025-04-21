@@ -54,8 +54,15 @@
 
 1.  **Fork 或克隆此仓库** 到您自己的 GitHub 账户。
 2.  **在 Vercel 上创建新项目**，选择您 Fork/克隆的 GitHub 仓库进行关联。Vercel 通常会自动检测到 Next.js 项目并配置好构建设置。
-3.  **配置 GitHub Secrets**: 按照 [配置](#vercel-部署与自动更新) 部分的说明，在您的 GitHub 仓库中设置 `HABITICA_USER_ID`, `HABITICA_API_TOKEN`, 和 `PAT` Secrets。这是自动更新功能正常工作的关键。
-4.  **触发首次部署**: Vercel 会在关联仓库后自动进行首次部署。
+3.  **配置 Vercel 环境变量**:
+    * 在 Vercel 控制台中，进入您的项目设置
+    * 找到 "Environment Variables" 部分
+    * 添加以下环境变量：
+      - `HABITICA_USER_ID`: 您的 Habitica 用户 ID
+      - `HABITICA_API_TOKEN`: 您的 Habitica API 令牌
+    * 这些环境变量用于首次部署时获取初始数据
+4.  **配置 GitHub Secrets**: 按照 [配置](#vercel-部署与自动更新) 部分的说明，在您的 GitHub 仓库中设置 `HABITICA_USER_ID`, `HABITICA_API_TOKEN`, 和 `PAT` Secrets。这是自动更新功能正常工作的关键。
+5.  **触发首次部署**: Vercel 会在关联仓库后自动进行首次部署。
 
 ### 工作原理 (回顾)
 
