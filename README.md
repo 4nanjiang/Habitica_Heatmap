@@ -1,6 +1,6 @@
 # Habitica Dailies Heatmap
 
-[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/your-github-username/habitica-heatmap/fetch-data.yml?branch=main)](https://github.com/your-github-username/habitica-heatmap/actions/workflows/fetch-data.yml)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/4nanjiang/habitica-heatmap/fetch-data.yml?branch=main)](https://github.com/4nanjiang/habitica-heatmap/actions/workflows/fetch-data.yml)
 
 这个项目展示了您在 Habitica 上每日任务的完成情况热力图。它采用静态生成的方式，在构建时或通过计划任务获取数据，避免在客户端浏览器中暴露您的 Habitica API 凭据。
 
