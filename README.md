@@ -4,6 +4,8 @@
 
 这个项目展示了您在 Habitica 上每日任务的完成情况热力图。它采用静态生成的方式，在构建时或通过计划任务获取数据，避免在客户端浏览器中暴露您的 Habitica API 凭据。
 
+![habitica_heatmap](https://raw.githubusercontent.com/4nanjiang/Habitica_Heatmap/refs/heads/main/habitica_heatmap.png)
+
 ## ✨ 特点
 
 -   **静态优先**: 使用 Next.js 构建的静态网站，加载速度快，部署简单。
